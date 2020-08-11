@@ -1,6 +1,9 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-
+var uppers = "QWRETYUIOPADSFGHJLKZXCVBNM";
+var lowers = "wqetryiuopasdfghjklzxcvbmn";
+var numbers = "1234567890";
+var symbols = "!@#$%^&*(){}[]=<>/,.";
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
@@ -11,13 +14,10 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
+var finalString = "";
 function generatePassword() {
-  var uppers = "QWRETYUIOPADSFGHJLKZXCVBNM";
-  var lowers = "wqetryiuopasdfghjklzxcvbmn";
-  var numbers = "1234567890";
-  var symbols = "!@#$%^&*(){}[]=<>/,.";
-  var finalString = "";
+
+
 
   var length = Number(
     prompt("How many characters would you like your password to be?")
@@ -29,43 +29,44 @@ function generatePassword() {
       )
     );
 
-  var uppers = confirm("Would you like to use uppercase letters?");
+  var uppersChoice = confirm("Would you like to use uppercase letters?");
 
-  var lowers = confirm("Would you like to use lowercase letters?");
+  var lowersChoice = confirm("Would you like to use lowercase letters?");
 
-  var numbers = confirm("Would you like to use numbers?");
+  var numbersChoice = confirm("Would you like to use numbers?");
 
-  var symbols = confirm("Would you like to use special characters?");
+  var symbolsChoice = confirm("Would you like to use special characters?");
 
-  while (!uppers && !lowers && !numbers && !symbols) {
+  while (!uppersChoice && !lowersChoice && !numbersChoice && !symbolsChoice) {
     alert("You must select at least one character type!");
-    uppers = confirm("Would you like to use uppercase letters?");
-    lowers = confirm("Would you like to use lowercase letters?");
-    numbers = confirm("Would you like to use numbers?");
-    symbols = confirm("Would you like to use special characters?");
+    uppersChoice = confirm("Would you like to use uppercase letters?");
+    lowersChoice = confirm("Would you like to use lowercase letters?");
+    numbersChoice = confirm("Would you like to use numbers?");
+    symbolsChoice = confirm("Would you like to use special characters?");
   }
 
-  if (uppers === true) {
-    finalString = lowers + uppers;
-  } else {
-    finalString = lowers;
+  if (uppersChoice === true) {
+    finalString += uppers;
+  }
+  if (lowersChoice === true) {
+    finalString += lowers;
   }
 
-  if (numbers === true) {
+  if (numbersChoice === true) {
     finalString += numbers;
   }
-  if (symbols === true) {
+  if (symbolsChoice === true) {
     finalString += symbols;
   }
 
   var password = "";
 
   for (i = 0; i < length; i++) {
-    var character = finalString.charAt(
-      Math.floor(Math.random() * finalString.length)
-    );
+    var character = finalString[Math.floor(Math.random() * finalString.length)];
     password += character;
   }
 
   return password;
 }
+
+
